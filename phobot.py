@@ -9,6 +9,8 @@ from email.message import EmailMessage
 import cassiopeia as cass
 from cassiopeia import Summoner
 from config import discord_token
+from config import mail_key
+from config import r_key
 
 TOKEN = discord_token
 
@@ -36,7 +38,7 @@ async def help(ctx):
 
 @client.command()
 async def lol(ctx, user):
-    cass.set_riot_api_key('RGAPI-512c0811-f29a-4ba4-aadb-0133a49f3cc9')
+    cass.set_riot_api_key(r_key)
     usr = cass.Summoner(name=str(user), region='NA')
 
     name = usr.name
@@ -73,7 +75,7 @@ async def on_ready():
 @client.command()
 async def email(ctx, to, body):
     email_sender = 'phobot.discord@gmail.com'
-    email_password = 'ydyodzvhhjiwcvmu'
+    email_password = mail_key
     email_receiver = str(to)
 
     subject = 'Discord Bot Message'
